@@ -786,7 +786,6 @@ $settings['entity_update_batch_size'] = 50;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 
-
-if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php')) {
-  include DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php';
+if (file_exists('/var/www/site-php')) {
+  require('/var/www/site-php/mysite/mysite-settings.inc');
 }
