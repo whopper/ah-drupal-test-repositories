@@ -787,5 +787,5 @@ $settings['entity_update_batch_size'] = 50;
 # }
 
 if (file_exists('/var/www/site-php')) {
-  require('/var/www/site-php/mysite/mysite-settings.inc');
+  require('/var/www/site-php/willdrushtest/willdrushtest-settings.inc');
 }

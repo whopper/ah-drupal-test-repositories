@@ -12,6 +12,15 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
+        '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
+        'ce70dccb4bcc2efc6e94d2ee526e6972' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_method_from_sapi.php',
+        'f86420df471f14d568bfcb71e271b523' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_protocol_version_from_sapi.php',
+        'b87481e008a3700344428ae089e7f9e5' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php',
+        '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
+        '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
+        '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
@@ -48,6 +57,7 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         'T' => 
         array (
             'Twig\\' => 5,
+            'TYPO3\\PharStreamWrapper\\' => 24,
         ),
         'S' => 
         array (
@@ -74,6 +84,7 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
             'Symfony\\Component\\ClassLoader\\' => 30,
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
+            'SelfUpdate\\' => 11,
         ),
         'R' => 
         array (
@@ -94,6 +105,11 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         'L' => 
         array (
             'League\\Container\\' => 17,
+        ),
+        'J' => 
+        array (
+            'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
+            'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'I' => 
         array (
@@ -129,6 +145,10 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
             'Consolidation\\AnnotatedCommand\\' => 31,
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
+        ),
+        'B' => 
+        array (
+            'Brumann\\Polyfill\\' => 17,
         ),
         'A' => 
         array (
@@ -176,6 +196,10 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'TYPO3\\PharStreamWrapper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/typo3/phar-stream-wrapper/src',
         ),
         'Symfony\\Polyfill\\Php70\\' => 
         array (
@@ -269,6 +293,10 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
+        'SelfUpdate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/consolidation/self-update/src',
+        ),
         'Robo\\' => 
         array (
             0 => __DIR__ . '/..' . '/consolidation/robo/src',
@@ -300,6 +328,14 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         'League\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/container/src',
+        ),
+        'JakubOnderka\\PhpConsoleHighlighter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
+        ),
+        'JakubOnderka\\PhpConsoleColor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
         ),
         'Interop\\Container\\' => 
         array (
@@ -368,6 +404,9 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'Consolidation\\OutputFormatters\\' => 
         array (
@@ -393,6 +432,10 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
+        'Brumann\\Polyfill\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/brumann/polyfill-unserialize/src',
+        ),
         'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
@@ -412,17 +455,6 @@ class ComposerStaticInitcb94fda509d9fbb54537cf98565d51b6
             'Stack' => 
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
-            ),
-        ),
-        'J' => 
-        array (
-            'JakubOnderka\\PhpConsoleHighlighter' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-            'JakubOnderka\\PhpConsoleColor' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
         'E' => 

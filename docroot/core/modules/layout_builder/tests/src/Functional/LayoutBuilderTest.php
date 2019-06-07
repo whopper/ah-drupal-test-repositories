@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\layout_builder\Functional;
 
+use Drupal\node\Entity\Node;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -188,6 +189,37 @@ class LayoutBuilderTest extends BrowserTestBase {
   }
 
   /**
+   * Test that layout builder checks entity view access.
+   */
+  public function testAccess() {
+    $assert_session = $this->assertSession();
+
+    $this->drupalLogin($this->drupalCreateUser([
+      'configure any layout',
+      'administer node display',
+    ]));
+
+    $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
+    // Allow overrides for the layout.
+    $this->drupalPostForm("$field_ui_prefix/display/default", ['layout[allow_custom]' => TRUE], 'Save');
+
+    $this->drupalLogin($this->drupalCreateUser(['configure any layout']));
+    $this->drupalGet('node/1');
+    $assert_session->pageTextContains('The first node body');
+    $assert_session->pageTextNotContains('Powered by Drupal');
+    $node = Node::load(1);
+    $node->setUnpublished();
+    $node->save();
+    $this->drupalGet('node/1');
+    $assert_session->pageTextNotContains('The first node body');
+    $assert_session->pageTextContains('Access denied');
+
+    $this->drupalGet('node/1/layout');
+    $assert_session->pageTextNotContains('The first node body');
+    $assert_session->pageTextContains('Access denied');
+  }
+
+  /**
    * Tests that component's dependencies are respected during removal.
    */
   public function testPluginDependencies() {
@@ -254,6 +286,69 @@ class LayoutBuilderTest extends BrowserTestBase {
     $assert_session->pageTextContains('Powered by Drupal');
     $assert_session->pageTextNotContains('My Menu');
     $assert_session->elementNotExists('css', '.block.menu--mymenu');
+  }
+
+  /**
+   * Tests the interaction between full and default view modes.
+   *
+   * @see \Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage::getDefaultSectionStorage()
+   */
+  public function testLayoutBuilderUiFullViewMode() {
+    $assert_session = $this->assertSession();
+    $page = $this->getSession()->getPage();
+
+    $this->drupalLogin($this->drupalCreateUser([
+      'configure any layout',
+      'administer node display',
+      'administer node fields',
+    ]));
+
+    $field_ui_prefix = 'admin/structure/types/manage/bundle_with_section_field';
+    // Allow overrides for the layout.
+    $this->drupalPostForm("$field_ui_prefix/display/default", ['layout[allow_custom]' => TRUE], 'Save');
+
+    // Customize the default view mode.
+    $this->drupalGet("$field_ui_prefix/display-layout/default");
+    $this->clickLink('Add Block');
+    $this->clickLink('Powered by Drupal');
+    $page->fillField('settings[label]', 'This is the default view mode');
+    $page->checkField('settings[label_display]');
+    $page->pressButton('Add Block');
+    $assert_session->pageTextContains('This is the default view mode');
+    $this->clickLink('Save Layout');
+
+    // The default view mode is used for both the node display and layout UI.
+    $this->drupalGet('node/1');
+    $assert_session->pageTextContains('This is the default view mode');
+    $this->drupalGet('node/1/layout');
+    $assert_session->pageTextContains('This is the default view mode');
+    $this->clickLink('Cancel Layout');
+
+    // Enable the full view mode and customize it.
+    $this->drupalPostForm("$field_ui_prefix/display/default", ['display_modes_custom[full]' => TRUE], 'Save');
+    $this->drupalGet("$field_ui_prefix/display-layout/full");
+    $this->clickLink('Add Block');
+    $this->clickLink('Powered by Drupal');
+    $page->fillField('settings[label]', 'This is the full view mode');
+    $page->checkField('settings[label_display]');
+    $page->pressButton('Add Block');
+    $assert_session->pageTextContains('This is the full view mode');
+    $this->clickLink('Save Layout');
+
+    // The full view mode is now used for both the node display and layout UI.
+    $this->drupalGet('node/1');
+    $assert_session->pageTextContains('This is the full view mode');
+    $this->drupalGet('node/1/layout');
+    $assert_session->pageTextContains('This is the full view mode');
+    $this->clickLink('Cancel Layout');
+
+    // Disable the full view mode, the default should be used again.
+    $this->drupalPostForm("$field_ui_prefix/display/default", ['display_modes_custom[full]' => FALSE], 'Save');
+    $this->drupalGet('node/1');
+    $assert_session->pageTextContains('This is the default view mode');
+    $this->drupalGet('node/1/layout');
+    $assert_session->pageTextContains('This is the default view mode');
+    $this->clickLink('Cancel Layout');
   }
 
 }
