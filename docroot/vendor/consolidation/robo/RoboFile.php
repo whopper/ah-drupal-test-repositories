@@ -16,6 +16,8 @@ class RoboFile extends \Robo\Tasks
             'coverage' => false
         ])
     {
+        $this->yell("Deprecated: use 'composer test' instead.");
+
         $collection = $this->collectionBuilder();
 
         $taskPHPUnit = $collection->taskPHPUnit();
@@ -103,6 +105,10 @@ class RoboFile extends \Robo\Tasks
             ->push()
             ->run();
 
+        if ($stable) {
+            $this->pharPublish();
+        }
+
         $this->publish();
         $this->taskGitStack()
             ->tag($version)
@@ -110,7 +116,6 @@ class RoboFile extends \Robo\Tasks
             ->run();
 
         if ($stable) {
-            $this->pharPublish();
             $version = $this->incrementVersion($version) . '-dev';
             $this->writeVersion($version);
 
